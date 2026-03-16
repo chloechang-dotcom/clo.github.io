@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chloe Wanghuige Chang | Personal Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @keyframes meteor {
+            0% { transform: rotate(215deg) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { transform: rotate(215deg) translateX(-1500px); opacity: 0; }
+        }
+        .animate-meteor { animation: meteor 3s linear infinite; }
+        
+        @keyframes slowSpin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        .animate-slowSpin { animation: slowSpin 180s linear infinite; }
+        
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .animate-fadeInLeft { animation: fadeInLeft 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .animate-fadeInRight { animation: fadeInRight 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn { animation: fadeIn 0.8s ease-out forwards; }
+        
+        html { scroll-behavior: smooth; }
+        body { background-color: #020617; color: #e2e8f0; margin: 0; overflow-x: hidden; font-family: sans-serif; }
+        
+        .selection-indigo ::selection { background: #6366f1; color: white; }
+        
+        .glass-card {
+            backdrop-filter: blur(16px);
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s ease;
+        }
+        .glass-card:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* 脉冲动画用于星星 */
+        @keyframes pulse {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body class="selection-indigo">
+    <div id="app" class="min-h-screen relative">
+        
+        <div class="fixed inset-0 pointer-events-none z-0">
+            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 mix-blend-lighten scale-110"
+                 style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&q=80&w=2048'); filter: hue-rotate(-10deg) brightness(0.8);"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#020617_80%)]"></div>
+            <div class="absolute inset-0 bg-slate-950/60"></div>
+            
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vw] opacity-15 animate-slowSpin">
+                <div class="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,_transparent_0deg,_#312e81_90deg,_#4338ca_180deg,_#1e1b4b_270deg,_transparent_360deg)] blur-[120px]"></div>
+            </div>
+
+            <div id="stars-container"></div>
+            
+            <div id="meteors-container"></div>
+        </div>
+
+        <div class="fixed top-6 left-6 z-[999] animate-fadeIn">
+            <a href="mailto:chloe.chang@sjsu.edu" class="flex items-center gap-3 px-4 py-2 bg-black/40 backdrop-blur-xl border border-white/10 rounded-full hover:bg-indigo-500/20 transition-all group shadow-2xl">
+                <i data-lucide="mail" class="w-4 h-4 text-indigo-400 group-hover:scale-110 transition-transform"></i>
+                <span class="text-[11px] font-mono tracking-wider text-slate-300 group-hover:text-white">chloe.chang@sjsu.edu</span>
+            </a>
+        </div>
+
+        <nav class="fixed top-6 right-6 z-[999] animate-fadeIn">
+            <div class="flex items-center p-1.5 bg-black/40 backdrop-blur-2xl border border-white/20 rounded-full shadow-2xl">
+                <a href="#current-orbit" class="px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest text-indigo-200 hover:text-white hover:bg-indigo-500/20 transition-all">About</a>
+                <div class="w-px h-3 bg-white/10 mx-1"></div>
+                <a href="#education" class="px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest text-indigo-200 hover:text-white hover:bg-indigo-500/20 transition-all">Academic</a>
+                <div class="w-px h-3 bg-white/10 mx-1"></div>
+                <a href="#experience" class="px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest text-indigo-200 hover:text-white hover:bg-indigo-500/20 transition-all">Professional</a>
+            </div>
+        </nav>
+
+        <section class="relative min-h-screen flex items-center justify-center z-10 px-6 py-20">
+            <div class="max-w-7xl w-full grid lg:grid-cols-2 gap-16 items-start mt-12">
+                
+                <div class="space-y-10 animate-fadeInLeft lg:sticky lg:top-24">
+                    <h1 class="text-6xl md:text-8xl xl:text-9xl font-bold text-white tracking-tighter leading-[0.85]">
+                        <span class="block mb-4">Chloe Wanghuige</span>
+                        <span class="block text-indigo-400">Chang</span>
+                    </h1>
+                    
+                    <div class="relative group w-full">
+                       <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                       <div class="relative p-10 rounded-3xl bg-[#020617]/40 border border-white/10 backdrop-blur-md shadow-2xl">
+                          <p class="text-lg md:text-2xl text-slate-200 font-light leading-relaxed tracking-[0.1em] uppercase">
+                            Exploring the <span class="text-indigo-400 font-medium">meaning of human existence</span> in the <span class="text-indigo-400 font-medium">AI era</span>
+                          </p>
+                       </div>
+                    </div>
+                </div>
+
+                <div class="animate-fadeInRight lg:pl-12 space-y-8">
+                    <div id="current-orbit" class="relative group scroll-mt-24 w-full">
+                        <div class="absolute -inset-0.5 bg-gradient-to-b from-white/20 to-transparent rounded-3xl blur-sm"></div>
+                        <div class="relative rounded-3xl p-10 bg-slate-900/60 backdrop-blur-2xl border border-white/10 shadow-2xl overflow-hidden">
+                            
+                            <div class="flex flex-col sm:flex-row justify-between gap-8 mb-10">
+                                <div class="flex-1">
+                                    <span class="text-indigo-400 text-xs font-mono tracking-[0.3em] uppercase block mb-3 font-semibold">Current Orbit</span>
+                                    <h3 class="text-3xl md:text-4xl font-light text-white tracking-wide leading-tight">Master in Philosophy Student</h3>
+                                </div>
+                                
+                                <div class="shrink-0 flex justify-center items-start">
+                                    <div class="relative w-32 h-32 md:w-40 md:h-40 rounded-3xl overflow-hidden border border-white/20 shadow-2xl group/img transform hover:scale-[1.02] transition-transform duration-500">
+                                        <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/20 to-transparent z-10 pointer-events-none"></div>
+                                        <img src="IMG_6858 copy.jpeg" alt="Chloe Chang" class="w-full h-full object-cover grayscale-[20%] group-hover/img:grayscale-0 transition-all duration-700 scale-110" style="object-position: center 25%;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div style="display: none;" class="absolute inset-0 flex flex-col items-center justify-center bg-indigo-950 text-indigo-400">
+                                            <span class="text-3xl font-bold tracking-tighter">CC</span>
+                                            <span class="text-[10px] uppercase tracking-widest mt-1">Philosopher</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-6 text-slate-300 font-light leading-relaxed mb-10">
+                                <p class="flex items-center gap-2">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-indigo-400"></i>
+                                    Based in <span class="text-white border-b border-indigo-500/50 pb-0.5 font-medium">San Jose, CA</span>
+                                </p>
+                                
+                                <div class="pt-6 border-t border-white/5">
+                                    <span class="text-[10px] text-indigo-400 uppercase tracking-widest block mb-3 font-semibold">RESEARCH INTEREST</span>
+                                    <p class="text-sm md:text-base text-slate-200 leading-relaxed font-light">
+                                        I am interested in <span class="text-white font-medium italic">existential questions</span> raised by <span class="text-white font-medium italic">AI and computing</span>, especially how <span class="text-white font-medium italic">algorithm systems</span> challenge and transform our understanding of the <span class="text-white font-medium italic">meaning of human existence</span>.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
+                                    <span class="text-[10px] text-slate-500 uppercase tracking-widest block mb-1">Focus</span>
+                                    <span class="text-xs text-white font-medium">Existentialism & AI</span>
+                                </div>
+                                <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
+                                    <span class="text-[10px] text-slate-500 uppercase tracking-widest block mb-1">Institution</span>
+                                    <span class="text-xs text-white font-medium">San Jose State University</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <div class="relative rounded-3xl p-8 bg-indigo-950/20 backdrop-blur-xl border border-indigo-500/20">
+                            <div class="flex items-center gap-2 mb-6">
+                                <i data-lucide="calendar" class="w-4 h-4 text-indigo-400"></i>
+                                <h4 class="text-sm font-semibold text-white uppercase tracking-[0.2em]">Key Conferences</h4>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h5 class="text-indigo-200 text-base md:text-lg font-bold italic mb-6 leading-snug">
+                                    “The Looping Effects in the Digital Age: Growing Concerns for Mental Health”
+                                </h5>
+                                
+                                <div class="space-y-6">
+                                    <div class="flex items-start justify-between gap-4 border-b border-white/5 pb-4">
+                                        <div class="flex flex-col gap-1.5 flex-1 text-sm">
+                                            <span class="text-slate-200 font-medium">Workshop - APA Pacific Division</span>
+                                            <span class="text-slate-500 font-mono uppercase tracking-widest text-[12px]">Virtual</span>
+                                        </div>
+                                        <div class="shrink-0 pt-0.5">
+                                            <span class="px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-300 font-mono border border-indigo-500/20 text-xs">Apr 2026</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start justify-between gap-4 border-b border-white/5 pb-4">
+                                        <div class="flex flex-col gap-1.5 flex-1 text-sm">
+                                            <span class="text-slate-200 font-medium">Poster Presentation - APA Central Division</span>
+                                            <span class="text-slate-500 font-mono uppercase tracking-widest text-[12px]">Chicago</span>
+                                        </div>
+                                        <div class="shrink-0 pt-0.5">
+                                            <span class="px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-300 font-mono border border-indigo-500/20 text-xs">Feb 2026</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start justify-between gap-4">
+                                        <div class="flex flex-col gap-1.5 flex-1 text-sm">
+                                            <span class="text-slate-200 font-medium">Presentation - SJSU Philosophy Alumni Conference</span>
+                                            <span class="text-slate-500 font-mono uppercase tracking-widest text-[12px]">San Jose</span>
+                                        </div>
+                                        <div class="shrink-0 pt-0.5">
+                                            <span class="px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-300 font-mono border border-indigo-500/20 text-xs">May 2025</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-30">
+                <i data-lucide="chevron-down" class="text-slate-400 w-8 h-8"></i>
+            </div>
+        </section>
+
+        <main class="relative z-10 max-w-6xl mx-auto px-6 py-24 space-y-40">
+            
+            <section id="education" class="scroll-mt-32">
+                <div class="flex flex-col items-center gap-4 mb-16 justify-center w-full">
+                    <i data-lucide="graduation-cap" class="text-indigo-400 opacity-80 w-8 h-8"></i>
+                    <div class="flex items-center gap-4 w-full justify-center">
+                        <div class="h-[1px] flex-1 max-w-[100px] bg-gradient-to-r from-transparent to-indigo-500/50"></div>
+                        <h2 class="text-3xl font-light tracking-[0.3em] text-white uppercase text-center">Academic Journey</h2>
+                        <div class="h-[1px] flex-1 max-w-[100px] bg-gradient-to-l from-transparent to-indigo-500/50"></div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div class="glass-card rounded-2xl p-8 text-center h-full">
+                        <div class="text-indigo-400 font-mono text-sm mb-2 tracking-widest">2024 — Present</div>
+                        <h3 class="text-2xl font-bold text-white mb-2">MA in Philosophy</h3>
+                        <p class="text-slate-400 text-lg">San Jose State University, USA</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 text-center h-full">
+                        <div class="text-indigo-400 font-mono text-sm mb-2 tracking-widest">2017 — 2021</div>
+                        <h3 class="text-2xl font-bold text-white mb-2">BS in Management</h3>
+                        <p class="text-slate-400 text-lg">ESCP Business School (Honors)</p>
+                        <p class="text-sm mt-3 text-slate-500 italic">Paris, Turin, and Berlin Campuses</p>
+                    </div>
+                </div>
+                
+                <div class="max-w-3xl mx-auto mt-16">
+                    <div class="flex items-center gap-3 mb-6 justify-center">
+                        <i data-lucide="award" class="text-indigo-400 w-6 h-6"></i>
+                        <h3 class="text-xl font-light text-white uppercase tracking-[0.2em]">Honors & Awards</h3>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 border-t-4 border-t-indigo-500 text-center">
+                        <h4 class="text-xl font-bold text-white">The Arthur Ordaz Award</h4>
+                        <p class="text-sm text-indigo-400 font-mono mt-1 mb-4">May 2025</p>
+                        <p class="text-slate-300 text-md leading-relaxed italic">
+                            "Awarded in recognition of promising scholarship and demonstrated interest in further philosophical research."
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+             <!-- 职业背景 - 更新后的时间轴样式 -->
+            <section id="experience" class="scroll-mt-32">
+                <div class="flex flex-col items-center gap-4 mb-20 justify-center w-full">
+                    <i data-lucide="briefcase" class="text-indigo-400 opacity-80 w-8 h-8"></i>
+                    <h2 class="text-3xl font-light tracking-[0.3em] text-white uppercase text-center">Professional Background</h2>
+                </div>
+
+                <!-- 时间轴容器 -->
+                <div class="max-w-4xl mx-auto relative pl-8">
+                    <!-- 纵轴线条 -->
+                    <div class="timeline-line"></div>
+
+                    <!-- 经历条目 1 -->
+                    <div class="relative mb-20 group">
+                        <!-- 节点圆点 -->
+                        <div class="absolute -left-[31px] top-1.5 w-[21px] h-[21px] rounded-full bg-indigo-500 border-4 border-[#020617] shadow-[0_0_15px_rgba(99,102,241,0.6)] z-10 transition-transform group-hover:scale-125"></div>
+                        
+                        <div class="flex flex-col items-start text-left">
+                            <div class="flex items-center gap-2 mb-2">
+                                <i data-lucide="sparkles" class="w-5 h-5 text-indigo-400 animate-pulse"></i>
+                                <h4 class="text-2xl md:text-3xl font-bold text-white tracking-tight">Instructional Student Assistant</h4>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-3 mb-6">
+                                <span class="text-indigo-400 text-sm font-mono font-semibold uppercase tracking-widest bg-indigo-500/10 px-3 py-1 rounded-md border border-indigo-500/20">Dept. of Philosophy, SJSU</span>
+                                <span class="text-slate-500 text-sm font-mono">2024 — PRESENT</span>
+                            </div>
+                            <div class="text-slate-400 text-base md:text-lg leading-relaxed space-y-3 max-w-3xl">
+                                <p class="flex items-start gap-3">
+                                    <span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-indigo-500/40 shrink-0"></span>
+                                    <span>Tutoring logic and academic writing for undergraduates, focusing on argument structure and clarity.</span>
+                                </p>
+                                <p class="flex items-start gap-3">
+                                    <span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-indigo-500/40 shrink-0"></span>
+                                    <span>Grading for Professional & Business Ethics, Science & Technology, and Modern Philosophy.</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 经历条目 2 -->
+                    <div class="relative mb-20 group">
+                        <div class="absolute -left-[31px] top-1.5 w-[21px] h-[21px] rounded-full bg-slate-600 border-4 border-[#020617] z-10 transition-transform group-hover:scale-125 group-hover:bg-indigo-400"></div>
+                        
+                        <div class="flex flex-col items-start text-left">
+                            <h4 class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-2">Partner & Marketing Manager</h4>
+                            <div class="flex flex-wrap items-center gap-3 mb-6">
+                                <span class="text-indigo-400 text-sm font-mono font-semibold uppercase tracking-widest bg-white/5 px-3 py-1 rounded-md border border-white/10">Atelier Ray Salenteya, Beijing</span>
+                                <span class="text-slate-500 text-sm font-mono">2021 — 2024</span>
+                            </div>
+                            <div class="text-slate-400 text-base md:text-lg leading-relaxed space-y-3 max-w-3xl">
+                                <p class="flex items-start gap-3">
+                                    <span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-slate-700 shrink-0"></span>
+                                    <span>Built and executed business and marketing strategies and partnered with sales to achieve annual corporate targets.</span>
+                                </p>
+                                <p class="flex items-start gap-3">
+                                    <span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-slate-700 shrink-0"></span>
+                                    <span>Led brand strategy and positioning; delivered integrated, cross-channel campaigns and brand consistency.</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 经历条目 3 -->
+                    <div class="relative mb-20 group">
+                        <div class="absolute -left-[31px] top-1.5 w-[21px] h-[21px] rounded-full bg-slate-700 border-4 border-[#020617] z-10 transition-transform group-hover:scale-125 group-hover:bg-indigo-400"></div>
+                        
+                        <div class="flex flex-col items-start text-left">
+                            <h4 class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-2">Data Analyst (CEO Office)</h4>
+                            <div class="flex flex-wrap items-center gap-3 mb-6">
+                                <span class="text-indigo-400 text-sm font-mono font-semibold uppercase tracking-widest bg-white/5 px-3 py-1 rounded-md border border-white/10">BNP Paribas, Shanghai</span>
+                                <span class="text-slate-500 text-sm font-mono">2020</span>
+                            </div>
+                            <div class="text-slate-400 text-base md:text-lg leading-relaxed space-y-3 max-w-3xl">
+                                <p class="flex items-start gap-3">
+                                    <span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-slate-700 shrink-0"></span>
+                                    <span>Utilized Excel VBA and Python to develop digitalization account system for tracking daily sales activities.</span>
+                                </p>
+                                <p class="flex items-start gap-3">
+                                    <span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-slate-700 shrink-0"></span>
+                                    <span>Performed research and analysis on economic and financial topics.</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 经历条目 4 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[31px] top-1.5 w-[21px] h-[21px] rounded-full bg-slate-800 border-4 border-[#020617] z-10 transition-transform group-hover:scale-125 group-hover:bg-indigo-400"></div>
+                        
+                        <div class="flex flex-col items-start text-left">
+                            <h4 class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-2">Macroeconomic Researcher</h4>
+                            <div class="flex flex-wrap items-center gap-3 mb-6">
+                                <span class="text-indigo-400 text-sm font-mono font-semibold uppercase tracking-widest bg-white/5 px-3 py-1 rounded-md border border-white/10">GF Securities, Remote</span>
+                                <span class="text-slate-500 text-sm font-mono">2020</span>
+                            </div>
+                            <div class="text-slate-400 text-base md:text-lg leading-relaxed space-y-3 max-w-3xl">
+                                <p class="flex items-start gap-3">
+                                    <span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-slate-700 shrink-0"></span>
+                                    <span>Conducted research on critical macroeconomic topics and data analysis of development trend of global economic.</span>
+                                </p>
+                                 <p class="flex items-start gap-3">
+                                    <span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-slate-700 shrink-0"></span>
+                                    <span>Assisted the senior analyst with macroeconomic research reports, eg. 'How did the European debt crisis unfold, and what lessons does it offer for the present?' and 'Is a liquidity crisis unpredictable?'.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="skills" class="scroll-mt-32">
+                <div class="flex flex-col items-center gap-4 mb-16 justify-center w-full">
+                    <i data-lucide="code" class="text-indigo-400 opacity-80 w-8 h-8"></i>
+                    <div class="flex items-center gap-4 w-full justify-center">
+                        <div class="h-[1px] flex-1 max-w-[100px] bg-gradient-to-r from-transparent to-indigo-500/50"></div>
+                        <h2 class="text-3xl font-light tracking-[0.3em] text-white uppercase text-center">Technical & Language Skills</h2>
+                        <div class="h-[1px] flex-1 max-w-[100px] bg-gradient-to-l from-transparent to-indigo-500/50"></div>
+                    </div>
+                </div>
+
+                <div class="space-y-12">
+                    <div class="glass-card rounded-2xl p-8 h-auto">
+                        <div class="flex items-center gap-3 mb-6">
+                            <i data-lucide="cpu" class="w-5 h-5 text-indigo-400"></i>
+                            <h4 class="text-xl font-bold text-white uppercase tracking-wider">Technical Proficiency</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-3" id="tech-skills-container">
+                            </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-8 h-auto">
+                        <div class="flex items-center gap-3 mb-6">
+                            <i data-lucide="languages" class="w-5 h-5 text-indigo-400"></i>
+                            <h4 class="text-xl font-bold text-white uppercase tracking-wider">Language Skills</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-3" id="lang-skills-container">
+                            </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="text-center pt-32 pb-16 border-t border-white/5">
+                <div class="mb-12">
+                    <div class="inline-block p-4 rounded-full bg-white/5 mb-6">
+                        <i data-lucide="mail" class="w-8 h-8 text-indigo-400"></i>
+                    </div>
+                    <h2 class="text-3xl font-light text-white mb-4 tracking-widest uppercase">Get in Touch</h2>
+                    <a href="mailto:chloe.chang@sjsu.edu" class="text-xl md:text-2xl text-slate-400 hover:text-indigo-300 transition-colors underline underline-offset-8 decoration-indigo-500/30">chloe.chang@sjsu.edu</a>
+                </div>
+                <p class="text-slate-600 text-[10px] tracking-[0.3em] uppercase">© 2026 Chloe Wanghuige Chang | Philosophy in the age of AI</p>
+            </footer>
+
+        </main>
+    </div>
+
+    <script>
+        // 初始化 Lucide 图标
+        lucide.createIcons();
+
+        // 动态生成星星
+        const starsContainer = document.getElementById('stars-container');
+        if (starsContainer) {
+            for (let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.className = 'absolute rounded-full bg-white opacity-20';
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.animation = `pulse ${Math.random() * 4 + 2}s infinite ${Math.random() * 10}s`;
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // 动态生成流星
+        const meteorsContainer = document.getElementById('meteors-container');
+        if (meteorsContainer) {
+            for (let i = 0; i < 15; i++) {
+                const meteor = document.createElement('div');
+                meteor.className = 'absolute h-px bg-gradient-to-r from-transparent via-indigo-200 to-transparent opacity-0 animate-meteor';
+                meteor.style.width = '300px';
+                meteor.style.top = `${Math.random() * 80}%`;
+                meteor.style.left = `${Math.random() * 90}%`;
+                meteor.style.animationDelay = `${Math.random() * 10}s`;
+                meteor.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                meteorsContainer.appendChild(meteor);
+            }
+        }
+
+        // 填充技能
+        const techSkills = ["Microsoft Office Suite", "MATLAB", "C", "HTML", "CSS", "Java", "Python", "VBA"];
+        const techContainer = document.getElementById('tech-skills-container');
+        if (techContainer) {
+            techSkills.forEach(skill => {
+                const span = document.createElement('span');
+                span.className = 'px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-sm text-slate-300 hover:border-indigo-500/50 transition-colors';
+                span.textContent = skill;
+                techContainer.appendChild(span);
+            });
+        }
+
+        const langSkills = [
+            { lang: "Chinese Mandarin", level: "Mother tongue" },
+            { lang: "English", level: "Fluent" },
+            { lang: "French", level: "Moderate (TCF B2)" },
+            { lang: "Italian", level: "Elementary proficiency" },
+            { lang: "German", level: "Elementary proficiency" }
+        ];
+        const langContainer = document.getElementById('lang-skills-container');
+        if (langContainer) {
+            langSkills.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'px-4 py-3 bg-white/5 border border-white/10 rounded-xl flex flex-col items-start gap-1 group hover:border-indigo-500/50 transition-all';
+                div.innerHTML = `
+                    <span class="text-slate-100 font-semibold text-sm">${item.lang}</span>
+                    <span class="text-[10px] font-mono text-indigo-400 uppercase tracking-widest">${item.level}</span>
+                `;
+                langContainer.appendChild(div);
+            });
+        }
+
+        // 视差效果 (简单版)
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const nebula = document.querySelector('.animate-slowSpin');
+            if (nebula) {
+                nebula.style.transform = `translate(-50%, -50%) rotate(${scrolled * 0.02}deg)`;
+            }
+        });
+    </script>
+</body>
+</html>
