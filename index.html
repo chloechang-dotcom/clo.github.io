@@ -19,25 +19,25 @@
             from { transform: translate(-50%, -50%) rotate(0deg); }
             to { transform: translate(-50%, -50%) rotate(360deg); }
         }
-        .animate-slowSpin { animation: slowSpin 180s linear infinite; }
+        .animate-slowSpin { animation: slowSpin 400s linear infinite; }
         
         @keyframes fadeInLeft {
             from { opacity: 0; transform: translateX(-50px); }
             to { opacity: 1; transform: translateX(0); }
         }
-        .animate-fadeInLeft { animation: fadeInLeft 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-fadeInLeft { animation: fadeInLeft 6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         
         @keyframes fadeInRight {
             from { opacity: 0; transform: translateX(50px); }
             to { opacity: 1; transform: translateX(0); }
         }
-        .animate-fadeInRight { animation: fadeInRight 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-fadeInRight { animation: fadeInRight 6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fadeIn { animation: fadeIn 0.8s ease-out forwards; }
+        .animate-fadeIn { animation: fadeIn 6s ease-out forwards; }
         
         html { scroll-behavior: smooth; }
         body { background-color: #020617; color: #e2e8f0; margin: 0; overflow-x: hidden; font-family: sans-serif;width: 100%； }
@@ -438,7 +438,7 @@
                 star.style.height = `${size}px`;
                 star.style.top = `${Math.random() * 100}%`;
                 star.style.left = `${Math.random() * 100}%`;
-                star.style.animation = `pulse ${Math.random() * 4 + 2}s infinite ${Math.random() * 10}s`;
+                star.style.animation = `pulse ${Math.random() * 15 + 5}s infinite ${Math.random() * 10}s`;
                 starsContainer.appendChild(star);
             }
         }
@@ -452,8 +452,8 @@
                 meteor.style.width = '300px';
                 meteor.style.top = `${Math.random() * 80}%`;
                 meteor.style.left = `${Math.random() * 90}%`;
-                meteor.style.animationDelay = `${Math.random() * 10}s`;
-                meteor.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                meteor.style.animationDelay = `${Math.random() * 20}s`;
+                meteor.style.animationDuration = `${Math.random() * 15 + 5}s`;
                 meteorsContainer.appendChild(meteor);
             }
         }
