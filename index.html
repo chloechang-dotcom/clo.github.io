@@ -40,7 +40,7 @@
         .animate-fadeIn { animation: fadeIn 0.8s ease-out forwards; }
         
         html { scroll-behavior: smooth; }
-        body { background-color: #020617; color: #e2e8f0; margin: 0; overflow-x: hidden; font-family: sans-serif; }
+        body { background-color: #020617; color: #e2e8f0; margin: 0; overflow-x: hidden; font-family: sans-serif;width: 100%； }
         
         .selection-indigo ::selection { background: #6366f1; color: white; }
         
@@ -71,7 +71,7 @@
             <div class="absolute inset-0 bg-slate-950/60"></div>
 
             <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80 transition-opacity duration-1000"
-                 style="background-image: url('Planetarium-Explore-The-Universe-16x9.jpg'); filter: brightness(0.4) contrast(1.2);"></div>
+                 style="background-image: url('Planetarium-Explore-The-Universe-16x9.jpg'); filter: brightness(0.3) contrast(1.2);"></div>
             
             <!-- 叠加一层柔和的暗色渐变，确保文字可读性 -->
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(2,6,23,0.8)_100%)]"></div>
@@ -104,9 +104,9 @@
         </nav>
 
         <section class="relative min-h-screen flex items-center justify-center z-10 px-6 py-20">
-            <div class="max-w-7xl w-full grid lg:grid-cols-[1fr_1.2fr] gap-10 items-start mt-12">
+            <div class="max-w-7xl w-full flex flex-col lg:grid lg:grid-cols-[1fr_1.2fr] gap-10 items-start mt-12">
                 
-                <div class="space-y-10 animate-fadeInLeft lg:sticky lg:top-24">
+                <div class="space-y-10 animate-fadeInLeft flex flex-col items-center lg:items-start text-center lg:text-left lg:sticky lg:top-24">
                     <h1 class="text-4xl md:text-6xl xl:text-7xl font-bold text-white tracking-tighter leading-[0.85]">
                         <span class="block mb-4">Hi，I’m Chloe </span>
                         <span class="block text-indigo-400">Wanghuige</span>
@@ -194,7 +194,7 @@
                                          </div>
                                     
                                         <div class="shrink-0 pt-0.5">
-                                            <span class="inline-block min-w-[220px] text-center px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-300 font-mono border border-indigo-500/20 text-[15px]">APA Pacific Division</span>
+                                            <span class="inline-block w-full sm:w-auto sm:min-w-[200px] text-center px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-300 font-mono border border-indigo-500/20 text-[15px]">APA Pacific Division</span>
                                         </div>
                                     </div>
                                     <div class="flex items-start justify-between gap-4 border-b border-white/5 pb-4">
@@ -203,7 +203,7 @@
                                             <span class="text-slate-300 font-mono uppercase tracking-widest text-[12px]">Chicago，Feb 2026</span>
                                         </div>
                                         <div class="shrink-0 pt-0.5">
-                                            <span class="inline-block min-w-[220px] text-center px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-300 font-mono border border-indigo-500/20 text-[15px]">APA Central Division</span>
+                                            <span class="inline-block w-full sm:w-auto sm:min-w-[200px] text-center px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-300 font-mono border border-indigo-500/20 text-[15px]">APA Central Division</span>
                                         </div>
                                     </div>
                                     <div class="flex items-start justify-between gap-4">
@@ -212,7 +212,7 @@
                                              <span class="text-slate-300 font-mono uppercase tracking-widest text-[12px]">San Jose, May 2025</span>
                                         </div>
                                         <div class="shrink-0 pt-0.5">
-                                            <span class="inline-block min-w-[220px] text-center px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-300 font-mono border border-indigo-500/20 text-[15px]">SJSU Phil Alumni Conference</span>
+                                           <span class="inline-block w-full sm:w-auto sm:min-w-[200px] text-center px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-300 font-mono border border-indigo-500/20 text-[15px]">SJSU Phil Alumni Conference</span>
                                         </div>
                                     </div>
                                 </div>
