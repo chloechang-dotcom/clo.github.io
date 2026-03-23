@@ -64,7 +64,7 @@
 <body class="selection-indigo">
     <div id="app" class="min-h-screen relative">
         
-        <div class="fixed inset-0 pointer-events-none z-0">
+        <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
             <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 mix-blend-lighten scale-110"
                  style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&q=80&w=2048'); filter: hue-rotate(-10deg) brightness(0.8);"></div>
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#020617_80%)]"></div>
@@ -89,11 +89,11 @@
         <div class="fixed top-6 left-6 z-[999] animate-fadeIn">
             <a href="mailto:chloe.chang@sjsu.edu" class="flex items-center gap-3 px-4 py-2 bg-black/40 backdrop-blur-md border border-white/10 rounded-full hover:bg-indigo-500/20 transition-all group ">
                 <i data-lucide="mail" class="w-4 h-4 text-indigo-400 group-hover:scale-110 transition-transform"></i>
-                <span class="text-[11px] font-mono tracking-wider text-slate-300 group-hover:text-white">chloe.chang@sjsu.edu</span>
+                <span class="hidden md:block text-[11px] font-mono tracking-wider text-slate-300 group-hover:text-white">chloe.chang@sjsu.edu</span>
             </a>
         </div>
 
-        <nav class="fixed top-6 right-6 z-[999] animate-fadeIn">
+        <nav class="fixed top- right-6 z-[999] animate-fadeIn">
             <div class="flex items-center p-1.5 bg-black/40 backdrop-blur-md border border-white/20 rounded-full">
                 <a href="#current-orbit" class="px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest text-indigo-200 hover:text-white hover:bg-indigo-500/20 transition-all">About me</a>
                 <div class="w-px h-3 bg-white/10 mx-1"></div>
@@ -122,7 +122,7 @@
                  <div class="relative group w-full">
                     <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl blur-md opacity-20 group-hover:opacity-40 transition duration-700"></div>
                     <div class="relative p-8 md:p-10  rounded-2xl bg-slate-950/90 border border-white/10 backdrop-blur-md shadow-2xl">
-                    <p class="text-sm md:text-1xl text-slate-200 font-light leading-relaxed tracking-[0.1em] uppercase">
+                    <p class="text-sm md:text-2xl text-slate-200 font-light leading-relaxed tracking-[0.1em] uppercase">
                             Exploring the <span class="text-indigo-400 font-medium">meaning of human existence</span> in the <span class="text-indigo-400 font-medium">AI era</span>
                           </p>
                     </div>
